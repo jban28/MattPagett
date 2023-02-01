@@ -1,18 +1,22 @@
 body {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   font-family: 'Gill Sans', sans-serif;
-}
-
-p {
-  margin: 8px;
+  padding: 0px;
 }
 
 .navbar {
   font-weight: bold;
+  padding-bottom: 40px;
 }
 
 .nav-link{
   color: red;
+}
+
+.navbar-brand {
+  display: none;
+  color: red;
+  font-size: 16px;
 }
 
 .active {
@@ -24,3 +28,12 @@ p {
   max-width: 1000px;
 }
 
+@media screen and (max-width: 575px){
+  .navbar-brand {
+    display: inline;
+  }
+
+  .hide-sm {
+    display: none;
+  }
+}
