@@ -1,6 +1,6 @@
 body {
   background-color: rgb(211, 211, 211);
-  font-family: 'Gill Sans', sans-serif;
+  font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
   align-items: center;
 }
 
@@ -54,6 +54,7 @@ td {
   padding: 24px; 
   margin: 8px; 
   background-color: white;
+  max-width: 1000px;
 }
 
 .img-tile-row {
