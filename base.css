@@ -4,6 +4,10 @@ body {
   align-items: center;
 }
 
+td {
+  padding-right: 15px;
+}
+
 .navbar {
   font-weight: bold;
   padding-bottom: 10px;
@@ -46,7 +50,7 @@ body {
 }
 
 .img-tile {
-  padding: 8px; 
+  padding: 24px; 
   margin: 8px; 
   background-color: white;
 }
