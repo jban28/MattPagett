@@ -6,6 +6,7 @@ body {
 
 td {
   padding-right: 15px;
+  vertical-align: top;
 }
 
 .navbar {
