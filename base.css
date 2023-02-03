@@ -63,3 +63,13 @@ td {
   padding-left: 4px;
   padding-right: 4px;
 }
+
+.caption {
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 767px){
+  .caption {
+    margin-top: 0px;
+  }
+}
