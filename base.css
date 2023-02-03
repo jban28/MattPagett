@@ -40,16 +40,6 @@ td {
   max-width: 1000px;
 }
 
-@media screen and (max-width: 575px){
-  .navbar-brand {
-    display: inline;
-  }
-
-  .hide-sm {
-    display: none;
-  }
-}
-
 .img-tile {
   padding: 24px; 
   margin: 8px; 
@@ -71,5 +61,28 @@ td {
 @media screen and (max-width: 767px){
   .caption {
     margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 575px){
+  .navbar-brand {
+    display: inline;
+  }
+
+  .hide-sm {
+    display: none;
+  }
+  
+  .img-tile-row{
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .img-tile{
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 8px;
+    margin-top: 8px;
   }
 }
