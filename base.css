@@ -58,6 +58,10 @@ td {
   margin-top: 16px;
 }
 
+.img-fluid {
+  width: 100%
+}
+
 @media screen and (max-width: 767px){
   .caption {
     margin-top: 0px;
