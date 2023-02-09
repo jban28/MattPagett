@@ -55,7 +55,7 @@
 
       <div class="d-flex"></div>
           <div id="img-window" style="margin:0px; height:100%; text-align:center; overflow: hidden;">
-            <img src="2480 bodies/2480_bodies_1A.jpg" id="image" style="height:inherit; object-fit: contain;"/>
+            <img src="2480 bodies/2480_bodies_1A.jpg" id="image" style="height:inherit; max-width: 100%; object-fit: contain;"/>
           </div>
         </div>
       </div>
@@ -77,6 +77,7 @@
       let zoomIn = function (e) {
         image.style.height = "2480px";
         image.style.cursor = "grab";
+        image.style.maxWidth = "none";
         body.addEventListener('click', zoomOut, true);
         image.addEventListener('dblclick', zoomOut);
         image.removeEventListener('click', zoomIn);
@@ -86,6 +87,7 @@
       let zoomOut = function (e) {
         image.style.height = "inherit";
         image.style.cursor = "zoom-in";
+        image.style.maxWidth = "100%";
         image.addEventListener('click', zoomIn);
         image.removeEventListener('dblclick', zoomOut);
         body.removeEventListener('click', zoomOut, true);
