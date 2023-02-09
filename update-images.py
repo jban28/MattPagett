@@ -65,7 +65,7 @@ for row in range(1,17):
     caption = "Caption"
 
     grid.write(f'''      
-      <div class="col-sm img-tile">
+      <div class="col img-tile">
         <a href="{url}"><img class="img-fluid" alt="{caption}" src="{filepath_thumb}"></a>
       </div>
       ''')
@@ -277,7 +277,7 @@ for row in range(1,20):
     caption = "Caption"
 
     grid.write(f'''      
-      <div class="col-sm img-tile">
+      <div class="col img-tile">
         <a href="{url}"><img class="img-fluid" alt="{caption}" src="{filepath_thumb}"></a>
       </div>
       ''')

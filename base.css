@@ -75,17 +75,4 @@ td {
   .hide-sm {
     display: none;
   }
-  
-  .img-tile-row{
-    width: 100%;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  
-  .img-tile{
-    width: 100%;
-    margin: 0px;
-    margin-bottom: 8px;
-    margin-top: 8px;
-  }
 }
