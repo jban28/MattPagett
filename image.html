@@ -16,8 +16,8 @@
     <link rel="icon" type="image/x-icon" href="favicon.png">
 
     <style>
-      #img-window{
-        cursor: grab;
+      #image{
+        cursor: zoom-in;
       }
     </style>
   </head>
@@ -51,20 +51,46 @@
           </div>
       </nav>
       
-      <div><p>Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption </p></div>
+      <div id="caption"><p>Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption </p></div>
 
       <div class="d-flex"></div>
           <div id="img-window" style="margin:0px; height:100%; text-align:center; overflow: hidden;">
-            <img src="2480 bodies/2480_bodies_1A.jpg" id="test-image" style="height:1240px; object-fit: contain;"/>
+            <img src="2480 bodies/2480_bodies_1A.jpg" id="image" style="height:inherit; object-fit: contain;"/>
           </div>
         </div>
       </div>
     </div>
 
     <script>
+
+    </script>
+
+    <script>
+      const image = document.querySelector("#image");
+      const caption = document.querySelector("#caption");
+      const body = document.querySelector("body");
       const slider = document.querySelector('#img-window');
+
       let mouseDown = false;
       let startX, scrollLeft;
+
+      let zoomIn = function (e) {
+        image.style.height = "2480px";
+        image.style.cursor = "grab";
+        body.addEventListener('click', zoomOut, true);
+        image.addEventListener('dblclick', zoomOut);
+        image.removeEventListener('click', zoomIn);
+        body.style.cursor = "zoom-out";
+      }
+
+      let zoomOut = function (e) {
+        image.style.height = "inherit";
+        image.style.cursor = "zoom-in";
+        image.addEventListener('click', zoomIn);
+        image.removeEventListener('dblclick', zoomOut);
+        body.removeEventListener('click', zoomOut, true);
+        body.style.cursor = "auto";
+      }
 
       let startDragging = function (e) {
         mouseDown = true;
@@ -72,9 +98,11 @@
         scrollLeft = slider.scrollLeft;
         startY = e.pageY - slider.offsetTop;
         scrollTop = slider.scrollTop;
+        image.style.cursor = "grabbing";
       };
       let stopDragging = function (event) {
         mouseDown = false;
+        image.style.cursor = "grab"
       };
 
       slider.addEventListener('mousemove', (e) => {
@@ -90,9 +118,11 @@
       });
 
       // Add the event listeners
-      slider.addEventListener('mousedown', startDragging, false);
-      slider.addEventListener('mouseup', stopDragging, false);
-      slider.addEventListener('mouseleave', stopDragging, false);
+      image.addEventListener('click', zoomIn);
+      slider.addEventListener('mousedown', startDragging);
+      slider.addEventListener('mouseup', stopDragging);
+      slider.addEventListener('mouseleave', stopDragging);
+     
     </script>
 
   </body>
