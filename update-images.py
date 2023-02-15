@@ -6,6 +6,8 @@ breakout = False
 max_row = 16
 
 while True:
+  caption_file = open(f"{lowercase}_captions.txt")
+  caption_list = caption_file.readlines()
   grid = open(f"{lowercase}.html", "w")
   grid.write(f"""
 <!DOCTYPE html>
@@ -58,6 +60,7 @@ while True:
     </nav>
 """)
   
+  i=0
   for row in range(1,max_row+1):
     grid.write('''
     <div class="row img-tile-row">''')
@@ -65,7 +68,7 @@ while True:
       url = f"{lowercase}/{row}{col}.html"
       filepath_thumb = f"360 {lowercase}/360_{lowercase}_{row}{col}.jpg"
       filepath_main = f"2480 {lowercase}/2480_{lowercase}_{row}{col}.jpg"
-      caption = "Caption"
+      caption = str(row) + str(col) + "<br />" + caption_list[i]
 
       grid.write(f'''      
         <div class="col img-tile">
@@ -206,8 +209,11 @@ while True:
   </body>
 
 </html>""")
+
+      i += 1
     grid.write('''
     </div>''')
+
 
   grid.write('''
   </body>
