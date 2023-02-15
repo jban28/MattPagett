@@ -10,13 +10,13 @@ td {
 }
 
 .navbar {
-  font-weight: bold;
   padding-bottom: 10px;
   flex-grow: 0;
 }
 
 .nav-link{
   color: red;
+  
 }
 
 .navbar-brand {
