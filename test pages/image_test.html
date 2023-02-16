@@ -24,15 +24,8 @@
 
     <script>
       function fullPage () {
-        const caption = document.querySelector("#caption");
-        const navbar = document.querySelector(".navbar");
-        const image = document.querySelector("#img-window");
-        caption.style.display = "none";
-        navbar.style.display = "none";
-        image.style.paddingTop = "16px";
-      }
-      function fullPage2 () {
         const elem = document.querySelector("#img-window");
+        const button = document.querySelector("#fs-button");
         if (elem.requestFullscreen) {
           elem.requestFullscreen();
         } else if (elem.webkitRequestFullscreen) { /* Safari */
@@ -73,12 +66,13 @@
           </div>
       </nav>
       
-      <div id="caption"><p> 1A <a href="../bodies/1B.html">&gt;&gt;&gt;</a> <br />Gardener 1 (R); pen and crayon on paper; 18 x 18 cm; 2021
-</p></div>
+      <div class="d-flex align-items-center">
+        <div id="caption" class="d-flex flex-col"><p> 1A <a href="../bodies/1B.html">&gt;&gt;&gt;</a> <br />Gardener 1 (R); pen and crayon on paper; 18 x 18 cm; 2021</p></div>
+        <div class="d-flex flex-col"><button id="fs-button" onclick=fullPage()>Full page view</button></div>
+      </div>
 
       <div class="d-flex"></div>
           <div id="img-window" style="margin:0px; height:100%; text-align:center; overflow: hidden;">
-            <div style="z-index:1; position: absolute;"><button onclick=fullPage2()>Full page view</button></div>
             <img src="../2480 bodies/2480_bodies_1A.jpg" alt="Gardener 1 (R); pen and crayon on paper; 18 x 18 cm; 2021
 " id="image" style="height:inherit; max-width: 100%; object-fit: contain;"/>
           </div>
