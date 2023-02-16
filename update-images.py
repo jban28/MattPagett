@@ -4,6 +4,8 @@ navbar_bodies = "nav-link active"
 navbar_flowers = "nav-link"
 breakout = False
 max_row = 16
+last = ""
+next = ""
 
 while True:
   caption_file = open(f"{lowercase}_captions.txt")
@@ -60,15 +62,33 @@ while True:
     </nav>
 """)
   
-  i=0
+  i = 0
   for row in range(1,max_row+1):
     grid.write('''
     <div class="row img-tile-row">''')
     for col in ["A", "B", "C"]:
+      if (col == "A") and (row != 1):
+        last = f'<a href="../{lowercase}/{row-1}C.html">&lt;&lt;&lt;</a>'
+      elif (col == "B"):
+        last = f'<a href="../{lowercase}/{row}A.html">&lt;&lt;&lt;</a>'
+      elif (col == "C"):
+        last = f'<a href="../{lowercase}/{row}B.html">&lt;&lt;&lt;</a>'
+      else:
+        last = ""
+      
+      if (col == "A"):
+        next = f'<a href="../{lowercase}/{row}B.html">&gt;&gt;&gt;</a>'
+      elif (col == "B"):
+        next = f'<a href="../{lowercase}/{row}C.html">&gt;&gt;&gt;</a>'
+      elif (col == "C") and row != max_row:
+        next = f'<a href="../{lowercase}/{row+1}A.html">&gt;&gt;&gt;</a>'
+      else:
+        next = ""
+
       url = f"{lowercase}/{row}{col}.html"
       filepath_thumb = f"360 {lowercase}/360_{lowercase}_{row}{col}.jpg"
       filepath_main = f"2480 {lowercase}/2480_{lowercase}_{row}{col}.jpg"
-      caption = str(row) + str(col) + "<br />" + caption_list[i]
+      caption = f"""{last} {str(row)}{str(col)} {next} <br />{caption_list[i]}"""
 
       grid.write(f'''      
         <div class="col img-tile">
@@ -134,7 +154,7 @@ while True:
 
       <div class="d-flex"></div>
           <div id="img-window" style="margin:0px; height:100%; text-align:center; overflow: hidden;">
-            <img src="../"""+filepath_main+"""\" alt=\""""+caption+"""\" id="image" style="height:inherit; max-width: 100%; object-fit: contain;"/>
+            <img src="../"""+filepath_main+"""\" alt=\""""+caption_list[i]+"""\" id="image" style="height:inherit; max-width: 100%; object-fit: contain;"/>
           </div>
         </div>
       </div>
