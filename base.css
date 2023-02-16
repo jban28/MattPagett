@@ -15,13 +15,13 @@ td {
 }
 
 .nav-link{
-  color: red;
+  color: #cc0000;
   
 }
 
 .navbar-brand {
   display: none;
-  color: red;
+  color: rgb(0, 0, 0);
   font-size: 16px;
   padding-left: 0px
 }
@@ -59,6 +59,10 @@ td {
 
 .img-fluid {
   width: 100%;
+}
+
+.hide-sm {
+  color:rgb(0, 0, 0);
 }
 
 @media screen and (max-width: 767px){

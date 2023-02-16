@@ -40,7 +40,7 @@ while True:
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav w-100 justify-content-between">
             <li class="nav-item hide-sm">
-              <a class="nav-link" style="padding-left: 0px;" href="index.html">MATT PAGETT</a>
+              <a class="nav-link active" style="padding-left: 0px;" href="index.html">MATT PAGETT</a>
             </li>
             <li class="nav-item">
               <a class="{navbar_bodies}" href="bodies.html">Bodies</a>
@@ -112,7 +112,7 @@ while True:
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav w-100 justify-content-between">
               <li class="nav-item hide-sm">
-                <a class="nav-link" style="padding-left: 0px;" href="../index.html">MATT PAGETT</a>
+                <a class="nav-link active" style="padding-left: 0px;" href="../index.html">MATT PAGETT</a>
               </li>
               <li class="nav-item">
                 <a class=\""""+navbar_bodies+"""\" href="../bodies.html">Bodies</a>
