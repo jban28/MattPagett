@@ -92,7 +92,7 @@ while True:
 
       grid.write(f'''      
         <div class="col img-tile">
-          <a href="{url}"><img class="img-fluid" alt="{caption}" src="{filepath_thumb}"></a>
+          <a href="{url}"><img class="img-fluid" alt="{caption_list[i]}" src="{filepath_thumb}"></a>
         </div>''')
 
       file = open(f"{url}", "w")
