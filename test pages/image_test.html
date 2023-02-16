@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +12,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link href="base.css" rel="stylesheet"/>
+    <link href="../base.css" rel="stylesheet"/>
 
     <link rel="icon" type="image/x-icon" href="favicon.png">
 
@@ -20,6 +21,27 @@
         cursor: zoom-in;
       }
     </style>
+
+    <script>
+      function fullPage () {
+        const caption = document.querySelector("#caption");
+        const navbar = document.querySelector(".navbar");
+        const image = document.querySelector("#img-window");
+        caption.style.display = "none";
+        navbar.style.display = "none";
+        image.style.paddingTop = "16px";
+      }
+      function fullPage2 () {
+        const elem = document.querySelector("#img-window");
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+          elem.msRequestFullscreen();
+        }
+      }
+    </script>
   </head>
   
   <body>
@@ -33,29 +55,32 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav w-100 justify-content-between">
               <li class="nav-item hide-sm">
-                <a class="nav-link" style="padding-left: 0px;" href="index.html">MATT PAGETT</a>
+                <a class="nav-link active" style="padding-left: 0px;" href="../index.html">MATT PAGETT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="bodies.html">Bodies</a>
+                <a class="nav-link active" href="../bodies.html">Bodies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="flowers.html">Flowers</a>
+                <a class="nav-link" href="../flowers.html">Flowers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="books.html">Books</a>
+                <a class="nav-link" href="../books.html">Books</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" style="padding-right: 0px" href="about.html">About/Contact</a>
+                <a class="nav-link" style="padding-right: 0px" href="../about.html">About/Contact</a>
               </li>
             </ul>
           </div>
       </nav>
       
-      <div id="caption"><p>Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption Caption </p></div>
+      <div id="caption"><p> 1A <a href="../bodies/1B.html">&gt;&gt;&gt;</a> <br />Gardener 1 (R); pen and crayon on paper; 18 x 18 cm; 2021
+</p></div>
 
       <div class="d-flex"></div>
           <div id="img-window" style="margin:0px; height:100%; text-align:center; overflow: hidden;">
-            <img src="2480 bodies/2480_bodies_1A.jpg" id="image" style="height:inherit; max-width: 100%; object-fit: contain;"/>
+            <div style="z-index:1; position: absolute;"><button onclick=fullPage2()>Full page view</button></div>
+            <img src="../2480 bodies/2480_bodies_1A.jpg" alt="Gardener 1 (R); pen and crayon on paper; 18 x 18 cm; 2021
+" id="image" style="height:inherit; max-width: 100%; object-fit: contain;"/>
           </div>
         </div>
       </div>
@@ -124,7 +149,7 @@
       slider.addEventListener('mousedown', startDragging);
       slider.addEventListener('mouseup', stopDragging);
       slider.addEventListener('mouseleave', stopDragging);
-     
+    
     </script>
 
   </body>
