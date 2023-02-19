@@ -22,19 +22,7 @@
       }
     </style>
 
-    <script>
-      function fullPage () {
-        const elem = document.querySelector("#img-window");
-        const button = document.querySelector("#fs-button");
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Safari */
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE11 */
-          elem.msRequestFullscreen();
-        }
-      }
-    </script>
+
   </head>
   
   <body>
@@ -68,7 +56,7 @@
       
       <div class="d-flex align-items-center">
         <div id="caption" class="d-flex flex-col"><p> 1A <a href="../bodies/1B.html">&gt;&gt;&gt;</a> <br />Gardener 1 (R); pen and crayon on paper; 18 x 18 cm; 2021</p></div>
-        <div class="d-flex flex-col"><button id="fs-button" onclick=fullPage()>Full page view</button></div>
+        <div class="d-flex flex-col"><button id="fs-button" onclick=fullScreen()>Full page view</button></div>
       </div>
 
       <div class="d-flex"></div>
@@ -79,72 +67,7 @@
         </div>
       </div>
     </div>
-
-    <script>
-
-    </script>
-
-    <script>
-      const image = document.querySelector("#image");
-      const caption = document.querySelector("#caption");
-      const body = document.querySelector("body");
-      const slider = document.querySelector('#img-window');
-
-      let mouseDown = false;
-      let startX, scrollLeft;
-
-      let zoomIn = function (e) {
-        image.style.height = "2480px";
-        image.style.cursor = "grab";
-        image.style.maxWidth = "none";
-        body.addEventListener('click', zoomOut, true);
-        image.addEventListener('dblclick', zoomOut);
-        image.removeEventListener('click', zoomIn);
-        body.style.cursor = "zoom-out";
-      }
-
-      let zoomOut = function (e) {
-        image.style.height = "inherit";
-        image.style.cursor = "zoom-in";
-        image.style.maxWidth = "100%";
-        image.addEventListener('click', zoomIn);
-        image.removeEventListener('dblclick', zoomOut);
-        body.removeEventListener('click', zoomOut, true);
-        body.style.cursor = "auto";
-      }
-
-      let startDragging = function (e) {
-        mouseDown = true;
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-        startY = e.pageY - slider.offsetTop;
-        scrollTop = slider.scrollTop;
-        image.style.cursor = "grabbing";
-      };
-      let stopDragging = function (event) {
-        mouseDown = false;
-        image.style.cursor = "grab"
-      };
-
-      slider.addEventListener('mousemove', (e) => {
-        e.preventDefault();
-        if(!mouseDown) { return; }
-        const x = e.pageX - slider.offsetLeft;
-        const scrollX = x - startX;
-        slider.scrollLeft = scrollLeft - scrollX;
-
-        const y = e.pageY - slider.offsetTop;
-        const scrollY = y - startY;
-        slider.scrollTop = scrollTop - scrollY;
-      });
-
-      // Add the event listeners
-      image.addEventListener('click', zoomIn);
-      slider.addEventListener('mousedown', startDragging);
-      slider.addEventListener('mouseup', stopDragging);
-      slider.addEventListener('mouseleave', stopDragging);
-    
-    </script>
+    <script src="image_page.js"></script>
 
   </body>
 
