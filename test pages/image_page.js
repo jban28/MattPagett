@@ -4,9 +4,13 @@ const image = document.querySelector("#image");
 const caption = document.querySelector("#caption");
 const body = document.querySelector("body");
 const slider = document.querySelector('#img-window');
+
 var scrollAmount;
 let mouseDown = false;
 let startX, scrollLeft;
+let startY, scrollTop;
+let mouseX, mouseY;
+let zoomed = false;
 
 function fullScreen () {
   const elem = document.querySelector("#img-window");
@@ -18,6 +22,18 @@ function fullScreen () {
     elem.msRequestFullscreen();
   }
 }
+
+const curs = document.querySelector('#cursorPos');
+
+let cursorPos = function(e) {
+  let x, y;
+  x = (e.pageX - image.offsetLeft + slider.scrollLeft) * 2480 / image.width;
+  y = (e.pageY - image.offsetTop + slider.scrollTop) * 2480 / image.height;
+  scrToX = x - (0.5 * slider.offsetWidth);
+  scrToY = y - (0.5 * slider.offsetHeight);
+  if (scrToX < 0){scrToX = 0};
+  if (scrToY < 0){scrToY = 0};
+};
 
 let keyMove = function(e) {
   scrollAmount = 10;
@@ -43,36 +59,48 @@ let keyStop = function(e) {
 }
 
 let zoomIn = function (e) {
+  let x, y;
+  x = (e.pageX - image.offsetLeft + slider.scrollLeft) * 2480 / image.width;
+  y = (e.pageY - image.offsetTop + slider.scrollTop) * 2480 / image.height;
+  scrToX = x - (0.5 * slider.offsetWidth);
+  scrToY = y - (0.5 * slider.offsetHeight);
+  if (scrToX < 0){scrToX = 0};
+  if (scrToY < 0){scrToY = 0};
   image.style.height = "2480px";
   image.style.cursor = "grab";
   image.style.maxWidth = "none";
-  body.addEventListener('click', zoomOut, true);
-  image.addEventListener('dblclick', zoomOut);
-  image.removeEventListener('click', zoomIn);
-  body.style.cursor = "zoom-out";
+  slider.scrollLeft = scrToX;
+  slider.scrollTop = scrToY;
+  zoomed = true;
 }
 
 let zoomOut = function (e) {
   image.style.height = "inherit";
   image.style.cursor = "zoom-in";
   image.style.maxWidth = "100%";
-  image.addEventListener('click', zoomIn);
-  image.removeEventListener('dblclick', zoomOut);
-  body.removeEventListener('click', zoomOut, true);
-  body.style.cursor = "auto";
+  zoomed = false;
 }
 
 let startDragging = function (e) {
   mouseDown = true;
+  mouseX = e.pageX;
+  mouseY = e.pageY;
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
   startY = e.pageY - slider.offsetTop;
   scrollTop = slider.scrollTop;
   image.style.cursor = "grabbing";
+  curs.innerHTML = String(mouseX) + "px " + String(mouseX) + "px";
 };
-let stopDragging = function (event) {
+
+let stopDragging = function (e) {
   mouseDown = false;
-  image.style.cursor = "grab"
+  image.style.cursor = "grab";
+  if (e.pageX == mouseX && e.pageY == mouseY) {
+    if (zoomed == false) {zoomIn(e);}
+    else if (zoomed == true) {zoomOut(e)};
+    
+  };
 };
 
 slider.addEventListener('mousemove', (e) => {
@@ -87,10 +115,17 @@ slider.addEventListener('mousemove', (e) => {
   slider.scrollTop = scrollTop - scrollY;
 });
 
+slider.addEventListener('wheel', (e) => {
+  e.preventDefault();
+})
+
 // Add the event listeners
-image.addEventListener('click', zoomIn);
+document.addEventListener('mousemove', cursorPos);
+//image.addEventListener('click', zoomIn);
 slider.addEventListener('mousedown', startDragging);
 slider.addEventListener('mouseup', stopDragging);
 slider.addEventListener('mouseleave', stopDragging);
+slider.addEventListener('touchstart', startDragging);
+slider.addEventListener('touchend', stopDragging);
 document.addEventListener('keydown', keyMove);
 document.addEventListener('keyup', keyStop);
