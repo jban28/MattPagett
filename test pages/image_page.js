@@ -1,9 +1,8 @@
-
-
 const image = document.querySelector("#image");
-const caption = document.querySelector("#caption");
 const body = document.querySelector("body");
-const slider = document.querySelector('#img-window');
+const frame = document.querySelector('#img-window');
+const slider = document.querySelector("#zoom-slider");
+const output = document.querySelector("#test");
 
 var scrollAmount;
 let mouseDown = false;
@@ -11,6 +10,8 @@ let startX, scrollLeft;
 let startY, scrollTop;
 let mouseX, mouseY;
 let zoomed = false;
+let fitHeight = image.height;
+let fitWidth = image.width;
 
 function fullScreen () {
   const elem = document.querySelector("#img-window");
@@ -21,56 +22,49 @@ function fullScreen () {
   } else if (elem.msRequestFullscreen) { /* IE11 */
     elem.msRequestFullscreen();
   }
-}
-
-const curs = document.querySelector('#cursorPos');
-
-let cursorPos = function(e) {
-  let x, y;
-  x = (e.pageX - image.offsetLeft + slider.scrollLeft) * 2480 / image.width;
-  y = (e.pageY - image.offsetTop + slider.scrollTop) * 2480 / image.height;
-  scrToX = x - (0.5 * slider.offsetWidth);
-  scrToY = y - (0.5 * slider.offsetHeight);
-  if (scrToX < 0){scrToX = 0};
-  if (scrToY < 0){scrToY = 0};
 };
+
+let zoom = function() {
+  image.style.maxWidth = "none";
+  image.style.height = "auto";
+  image.height = fitHeight + (slider.value/100) * (image.naturalHeight - fitHeight);
+  image.width = fitWidth + (slider.value/100) * (image.naturalWidth - fitWidth);
+}
 
 let keyMove = function(e) {
   scrollAmount = 10;
-  slider.scrollBy({behavior: 'smooth'});
+  frame.scrollBy({behavior: 'smooth'});
   switch (e.key){
     case "ArrowLeft":
-      slider.scrollBy({left: -scrollAmount,});
+      frame.scrollBy({left: -scrollAmount,});
       break;
     case "ArrowRight":
-      slider.scrollBy({left: +scrollAmount,});
+      frame.scrollBy({left: +scrollAmount,});
       break;
     case "ArrowUp":
-      slider.scrollBy({top: -scrollAmount,});
+      frame.scrollBy({top: -scrollAmount,});
       break;
     case "ArrowDown":
-      slider.scrollBy({top: +scrollAmount,});
+      frame.scrollBy({top: +scrollAmount,});
       break;
   }
 };
 
 let keyStop = function(e) {
   scrollAmount = 0;
-}
+};
 
 let zoomIn = function (e) {
-  let x, y;
-  x = (e.pageX - image.offsetLeft + slider.scrollLeft) * 2480 / image.width;
-  y = (e.pageY - image.offsetTop + slider.scrollTop) * 2480 / image.height;
-  scrToX = x - (0.5 * slider.offsetWidth);
-  scrToY = y - (0.5 * slider.offsetHeight);
+  let scrToX, scrToY;
+  scrToX = (e.pageX - image.offsetLeft + frame.scrollLeft) * image.naturalWidth / image.width - (0.5 * frame.offsetWidth);
+  scrToY = (e.pageY - image.offsetTop + frame.scrollTop) * image.naturalHeight / image.height - (0.5 * frame.offsetHeight);
   if (scrToX < 0){scrToX = 0};
   if (scrToY < 0){scrToY = 0};
   image.style.height = "2480px";
   image.style.cursor = "grab";
   image.style.maxWidth = "none";
-  slider.scrollLeft = scrToX;
-  slider.scrollTop = scrToY;
+  frame.scrollLeft = scrToX;
+  frame.scrollTop = scrToY;
   zoomed = true;
 }
 
@@ -85,12 +79,11 @@ let startDragging = function (e) {
   mouseDown = true;
   mouseX = e.pageX;
   mouseY = e.pageY;
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-  startY = e.pageY - slider.offsetTop;
-  scrollTop = slider.scrollTop;
+  startX = e.pageX - frame.offsetLeft;
+  scrollLeft = frame.scrollLeft;
+  startY = e.pageY - frame.offsetTop;
+  scrollTop = frame.scrollTop;
   image.style.cursor = "grabbing";
-  curs.innerHTML = String(mouseX) + "px " + String(mouseX) + "px";
 };
 
 let stopDragging = function (e) {
@@ -103,29 +96,29 @@ let stopDragging = function (e) {
   };
 };
 
-slider.addEventListener('mousemove', (e) => {
+frame.addEventListener('mousemove', (e) => {
   e.preventDefault();
   if(!mouseDown) { return; }
-  const x = e.pageX - slider.offsetLeft;
+  const x = e.pageX - frame.offsetLeft;
   const scrollX = x - startX;
-  slider.scrollLeft = scrollLeft - scrollX;
+  frame.scrollLeft = scrollLeft - scrollX;
 
-  const y = e.pageY - slider.offsetTop;
+  const y = e.pageY - frame.offsetTop;
   const scrollY = y - startY;
-  slider.scrollTop = scrollTop - scrollY;
+  frame.scrollTop = scrollTop - scrollY;
 });
 
-slider.addEventListener('wheel', (e) => {
+frame.addEventListener('wheel', (e) => {
   e.preventDefault();
 })
 
 // Add the event listeners
-document.addEventListener('mousemove', cursorPos);
-//image.addEventListener('click', zoomIn);
-slider.addEventListener('mousedown', startDragging);
-slider.addEventListener('mouseup', stopDragging);
-slider.addEventListener('mouseleave', stopDragging);
-slider.addEventListener('touchstart', startDragging);
-slider.addEventListener('touchend', stopDragging);
+frame.addEventListener('mousedown', startDragging);
+frame.addEventListener('mouseup', stopDragging);
+frame.addEventListener('mouseleave', stopDragging);
+frame.addEventListener('touchstart', startDragging);
+frame.addEventListener('touchend', stopDragging);
 document.addEventListener('keydown', keyMove);
 document.addEventListener('keyup', keyStop);
+slider.addEventListener('input', zoom);
+
