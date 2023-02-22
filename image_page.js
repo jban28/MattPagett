@@ -143,7 +143,7 @@ image.addEventListener('touchstart', (e) => {
   touchStartX = e.touches[0].pageX;
   touchStartY = e.touches[0].pageY;
   touchX = touchStartX;
-  touchY = mousedownY;
+  touchY = touchStartY;
 });
 
 image.addEventListener('touchmove', (e) => {
