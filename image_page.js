@@ -138,27 +138,6 @@ image.addEventListener('mouseleave', () => {
   image.style.cursor = "zoom-in";
 });
 
-image.addEventListener('touchstart', (e) => {
-  isTouch = true;
-  touchStartX = e.pageX;
-  touchStartY = e.pageY;
-  touchX = touchStartX;
-  touchY = mousedownY;
-});
-
-image.addEventListener('touchmove', (e) => {
-  e.preventDefault();
-  if(!isTouch) {return;}
-  frame.scrollLeft += touchX - e.pageX;
-  frame.scrollTop += touchY - e.pageY;
-  touchX = e.pageX;
-  touchY = e.pageY;
-});
-
-image.addEventListener('touchend', () => {
-  isTouch = false;
-});
-
 image.addEventListener('wheel', (e) => {
   e.preventDefault();
   setZoom(zoomValue - 0.001*e.deltaY)
