@@ -10,6 +10,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 let zoomValue;
 let isMouseDown = false;
+let isTouch = false;
 let mousedownX;
 let mousedownY;
 let mouseX;
@@ -121,7 +122,7 @@ image.addEventListener('mousemove', (e) => {
   mouseX = e.pageX;
   mouseY = e.pageY;
   image.style.cursor = "grabbing";
-})
+});
 
 image.addEventListener('mouseup', (e) => {
   isMouseDown = false;
@@ -135,6 +136,27 @@ image.addEventListener('mouseup', (e) => {
 image.addEventListener('mouseleave', () => {
   isMouseDown = false;
   image.style.cursor = "zoom-in";
+});
+
+image.addEventListener('touchstart', (e) => {
+  isTouch = true;
+  touchStartX = e.pageX;
+  touchStartY = e.pageY;
+  touchX = touchStartX;
+  touchY = mousedownY;
+});
+
+image.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if(!isTouch) {return;}
+  frame.scrollLeft += touchX - e.pageX;
+  frame.scrollTop += touchY - e.pageY;
+  touchX = e.pageX;
+  touchY = e.pageY;
+});
+
+image.addEventListener('touchend', () => {
+  isTouch = false;
 });
 
 image.addEventListener('wheel', (e) => {
