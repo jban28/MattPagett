@@ -1,0 +1,27 @@
+#image {
+  cursor: zoom-in;
+}
+
+#frame {
+  margin:0px;
+  height:100%;
+  text-align:center;
+  overflow: hidden;
+  position: relative;
+}
+
+#img-div {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+#controls {
+  z-index: 9;
+  position: fixed;
+  cursor: pointer;
+}
+
+#slider {
+  cursor: pointer;
+}

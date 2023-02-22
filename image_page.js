@@ -33,13 +33,23 @@ let fitWindow = function(){
 }
 
 let fullScreen = function() {
-  const elem = document.querySelector("#frame");
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
+  if (!document.fullscreenElement) {
+    if (frame.requestFullscreen) {
+      frame.requestFullscreen();
+    } else if (frame.webkitRequestFullscreen) { /* Safari */
+      frame.webkitRequestFullscreen();
+    } else if (frame.msRequestFullscreen) { /* IE11 */
+      frame.msRequestFullscreen();
+    }
+  }
+  else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
   }
 }
 
@@ -74,14 +84,14 @@ let keyMove = function(e) {
   }
 }
 
-fitWindow();
-
 setInterval (function() {
   frame.scrollBy({
     top: scrollAmountY,
     left: scrollAmountX
   });
 },10);
+
+image.addEventListener('load', fitWindow);
 
 window.addEventListener("resize", fitWindow);
 
@@ -92,6 +102,8 @@ document.addEventListener('keyup', () => {
 });
 
 fullScreenBtn.addEventListener('click', fullScreen);
+
+/*frame.addEventListener('fullscreenchange', (e) => {return;});*/
 
 image.addEventListener('mousedown', (e) => {
   isMouseDown = true;
