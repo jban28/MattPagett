@@ -140,8 +140,8 @@ image.addEventListener('mouseleave', () => {
 
 image.addEventListener('touchstart', (e) => {
   isTouch = true;
-  touchStartX = e.pageX;
-  touchStartY = e.pageY;
+  touchStartX = e.touches[0].pageX;
+  touchStartY = e.touches[0].pageY;
   touchX = touchStartX;
   touchY = mousedownY;
 });
@@ -149,10 +149,10 @@ image.addEventListener('touchstart', (e) => {
 image.addEventListener('touchmove', (e) => {
   e.preventDefault();
   if(!isTouch) {return;}
-  frame.scrollLeft += touchX - e.pageX;
-  frame.scrollTop += touchY - e.pageY;
-  touchX = e.pageX;
-  touchY = e.pageY;
+  frame.scrollLeft += touchX - e.changedTouches[0].pageX;
+  frame.scrollTop += touchY - e.changedTouches[0].pageY;
+  touchX = e.changedTouches[0].pageX;
+  touchY = e.changedTouches[0].pageY;
 });
 
 image.addEventListener('touchend', () => {
