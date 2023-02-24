@@ -162,14 +162,14 @@ image.addEventListener('touchmove', (e) => {
   let changeX = 0;
   let changeY = 0;
   let changeSeparation;
-  if (e.touches.length == 1) {
-    changeX = e.touches[0].pageX;
-    changeY += e.touches[0].pageY;
+  if (e.changedTouches.length == 1) {
+    changeX = e.changedTouches[0].pageX;
+    changeY += e.changedTouches[0].pageY;
   }
   else {
-    changeX = (e.touches[0].pageX + e.touches[1].pageX) / 2;
-    changeY = (e.touches[0].pageY + e.touches[1].pageY) / 2;
-    changeSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ^ 2 + (e.touches[0].pageY - e.touches[1].pageY) ^ 2) ^ 0.5; 
+    changeX = (e.changedTouches[0].pageX + e.changedTouches[1].pageX) / 2;
+    changeY = (e.changedTouches[0].pageY + e.changedTouches[1].pageY) / 2;
+    changeSeparation = ((e.changedTouches[0].pageX - e.changedTouches[1].pageX) ^ 2 + (e.changedTouches[0].pageY - e.changedTouches[1].pageY) ^ 2) ^ 0.5; 
     setZoom(changeSeparation/touchSeparation);
     touchSeparation = changeSeparation;
   }
