@@ -11,6 +11,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 let zoomValue;
 let isMouseDown = false;
 let isTouch = false;
+let touchSeparation;
 let mousedownX;
 let mousedownY;
 let mouseX;
@@ -140,19 +141,42 @@ image.addEventListener('mouseleave', () => {
 
 image.addEventListener('touchstart', (e) => {
   isTouch = true;
-  touchStartX = e.touches[0].pageX;
-  touchStartY = e.touches[0].pageY;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  if (e.touches.length == 1) {
+    touchStartX = e.touches[0].pageX;
+    touchStartY += e.touches[0].pageY;
+  }
+  else {
+    touchStartX = (e.touches[0].pageX + e.touches[1].pageX) / 2;
+    touchStartY = (e.touches[0].pageY + e.touches[1].pageY) / 2;
+    touchSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ^ 2 + (e.touches[0].pageY - e.touches[1].pageY) ^ 2) ^ 0.5; 
+  }
   touchX = touchStartX;
-  touchY = mousedownY;
+  touchY = touchStartY;
 });
 
 image.addEventListener('touchmove', (e) => {
   e.preventDefault();
   if(!isTouch) {return;}
-  frame.scrollLeft += touchX - e.changedTouches[0].pageX;
-  frame.scrollTop += touchY - e.changedTouches[0].pageY;
-  touchX = e.changedTouches[0].pageX;
-  touchY = e.changedTouches[0].pageY;
+  let changeX = 0;
+  let changeY = 0;
+  let changeSeparation;
+  if (e.touches.length == 1) {
+    changeX = e.touches[0].pageX;
+    changeY += e.touches[0].pageY;
+  }
+  else {
+    changeX = (e.touches[0].pageX + e.touches[1].pageX) / 2;
+    changeY = (e.touches[0].pageY + e.touches[1].pageY) / 2;
+    changeSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ^ 2 + (e.touches[0].pageY - e.touches[1].pageY) ^ 2) ^ 0.5; 
+    setZoom(changeSeparation/touchSeparation);
+    touchSeparation = changeSeparation;
+  }
+  frame.scrollLeft += touchX - changeX;
+  frame.scrollTop += touchY - changeY;
+  touchX = changeX;
+  touchY = changeY;
 });
 
 image.addEventListener('touchend', () => {
