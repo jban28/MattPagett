@@ -163,14 +163,14 @@ image.addEventListener('touchmove', (e) => {
   let changeY = 0;
   let changeSeparation;
   let zoomTo;
-  if (e.changedTouches.length == 1) {
-    changeX = e.changedTouches[0].pageX;
-    changeY += e.changedTouches[0].pageY;
+  if (e.touches.length == 1) {
+    changeX = e.touches[0].pageX;
+    changeY = e.touches[0].pageY;
   }
   else {
-    changeX = (e.changedTouches[0].pageX + e.changedTouches[1].pageX) / 2;
-    changeY = (e.changedTouches[0].pageY + e.changedTouches[1].pageY) / 2;
-    changeSeparation = ((e.changedTouches[0].pageX - e.changedTouches[1].pageX) ^ 2 + (e.changedTouches[0].pageY - e.changedTouches[1].pageY) ^ 2) ^ 0.5; 
+    changeX = (e.touches[0].pageX + e.touches[1].pageX) / 2;
+    changeY = (e.touches[0].pageY + e.touches[1].pageY) / 2;
+    changeSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ^ 2 + (e.touches[0].pageY - e.touches[1].pageY) ^ 2) ^ 0.5; 
     zoomTo = changeSeparation/touchSeparation;
     if (zoomTo > 1) {zoomValue = 1;}
     else if (zoomTo < slider.min) {zoomValue = slider.min;}
