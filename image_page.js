@@ -162,6 +162,7 @@ image.addEventListener('touchmove', (e) => {
   let changeX = 0;
   let changeY = 0;
   let changeSeparation;
+  let zoomTo;
   if (e.changedTouches.length == 1) {
     changeX = e.changedTouches[0].pageX;
     changeY += e.changedTouches[0].pageY;
@@ -170,7 +171,13 @@ image.addEventListener('touchmove', (e) => {
     changeX = (e.changedTouches[0].pageX + e.changedTouches[1].pageX) / 2;
     changeY = (e.changedTouches[0].pageY + e.changedTouches[1].pageY) / 2;
     changeSeparation = ((e.changedTouches[0].pageX - e.changedTouches[1].pageX) ^ 2 + (e.changedTouches[0].pageY - e.changedTouches[1].pageY) ^ 2) ^ 0.5; 
-    setZoom(changeSeparation/touchSeparation);
+    zoomTo = changeSeparation/touchSeparation;
+    if (zoomTo > 1) {zoomValue = 1;}
+    else if (zoomTo < slider.min) {zoomValue = slider.min;}
+    else {zoomValue = zoomTo;}
+    image.height = image.naturalHeight * zoomValue;
+    image.width = image.naturalWidth * zoomValue;
+    slider.value = zoomValue;
     touchSeparation = changeSeparation;
   }
   frame.scrollLeft += touchX - changeX;
