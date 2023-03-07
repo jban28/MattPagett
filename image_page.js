@@ -163,7 +163,7 @@ image.addEventListener('touchmove', (e) => {
   let changeX = 0;
   let changeY = 0;
   let changeSeparation;
-  let zoomTo;
+  let zoomTo = zoomValue;
   if (e.touches.length == 1) {
     changeX = e.touches[0].pageX;
     changeY = e.touches[0].pageY;
