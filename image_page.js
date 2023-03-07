@@ -2,6 +2,7 @@ const image = document.querySelector("#image");
 const frame = document.querySelector('#frame');
 const slider = document.querySelector("#slider");
 const fullScreenBtn = document.querySelector("#full-screen");
+const track = document.querySelector("#track");
 
 var script = document.createElement('script');
 script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js";
@@ -145,7 +146,7 @@ image.addEventListener('touchstart', (e) => {
   let touchStartY = 0;
   if (e.touches.length == 1) {
     touchStartX = e.touches[0].pageX;
-    touchStartY += e.touches[0].pageY;
+    touchStartY = e.touches[0].pageY;
   }
   else {
     touchStartX = (e.touches[0].pageX + e.touches[1].pageX) / 2;
@@ -172,6 +173,7 @@ image.addEventListener('touchmove', (e) => {
     changeY = (e.touches[0].pageY + e.touches[1].pageY) / 2;
     changeSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ^ 2 + (e.touches[0].pageY - e.touches[1].pageY) ^ 2) ^ 0.5; 
     zoomTo = changeSeparation/touchSeparation;
+    track.innerHTML = zoomTo;
     if (zoomTo > 1) {zoomValue = 1;}
     else if (zoomTo < slider.min) {zoomValue = slider.min;}
     else {zoomValue = zoomTo;}
