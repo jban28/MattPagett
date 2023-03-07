@@ -7,21 +7,101 @@
   height:100%;
   text-align:center;
   overflow: hidden;
-  position: relative;
+}
+
+p {
+  margin: 0px;
 }
 
 #img-div {
-  position: absolute;
   text-align: center;
   width: 100%;
 }
 
 #controls {
-  z-index: 9;
-  position: fixed;
   cursor: pointer;
+  height: 28px;
+  padding: 0px;
+  padding-bottom: 4px;
+  margin: 0px;
+  overflow: visible;
 }
 
-#slider {
+.material-icons {
+  color: #cc0000;
+}
+
+#slider { 
+  -webkit-appearance: none;
+  position: absolute;
+  overflow: hidden;
+  height: 16px;
+  margin: 4px;
+  width: 200px;
   cursor: pointer;
+  border-radius: 0; /* iOS */
+}
+
+::-webkit-slider-runnable-track {
+  background: #ddd;
+}
+
+/*
+* 1. Set to 0 width and remove border for a slider without a thumb
+* 2. Shadow is negative the full width of the input and has a spread 
+*    of the width of the input.
+*/
+::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; /* 1 */
+  height: 16px;
+  background: #fff;
+  box-shadow: -200px 0 0 200px #cc0000; /* 2 */
+  border: 2px solid #999; /* 1 */
+}
+
+::-moz-range-track {
+  height: 40px;
+  background: #ddd;
+}
+
+::-moz-range-thumb {
+  background: #fff;
+  height: 16px;
+  width: 16px;
+  border: 3px solid #999;
+  border-radius: 0 !important;
+  box-shadow: -200px 0 0 200px #cc0000;
+  box-sizing: border-box;
+}
+
+::-ms-fill-lower { 
+  background: #cc0000;
+}
+
+::-ms-thumb { 
+  background: #fff;
+  border: 2px solid #999;
+  height: 16px;
+  width: 16px;
+  box-sizing: border-box;
+}
+
+::-ms-ticks-after { 
+  display: none; 
+}
+
+::-ms-ticks-before { 
+  display: none; 
+}
+
+::-ms-track { 
+  background: #ddd;
+  color: transparent;
+  height: 16px;
+  border: none;
+}
+
+::-ms-tooltip { 
+  display: none;
 }

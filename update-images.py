@@ -68,27 +68,27 @@ while True:
     <div class="row img-tile-row">''')
     for col in ["A", "B", "C"]:
       if (col == "A") and (row != 1):
-        last = f'<a href="../{lowercase}/{row-1}C.html">&lt;&lt;&lt;</a>'
+        last = f'<a href="../{lowercase}/{row-1}C.html"><span class="material-icons">west</span></a>'
       elif (col == "B"):
-        last = f'<a href="../{lowercase}/{row}A.html">&lt;&lt;&lt;</a>'
+        last = f'<a href="../{lowercase}/{row}A.html"><span class="material-icons">west</span></a>'
       elif (col == "C"):
-        last = f'<a href="../{lowercase}/{row}B.html">&lt;&lt;&lt;</a>'
+        last = f'<a href="../{lowercase}/{row}B.html"><span class="material-icons">west</span></a>'
       else:
         last = ""
       
       if (col == "A"):
-        next = f'<a href="../{lowercase}/{row}B.html">&gt;&gt;&gt;</a>'
+        next = f'<a href="../{lowercase}/{row}B.html"><span class="material-icons">east</span></a>'
       elif (col == "B"):
-        next = f'<a href="../{lowercase}/{row}C.html">&gt;&gt;&gt;</a>'
+        next = f'<a href="../{lowercase}/{row}C.html"><span class="material-icons">east</span></a>'
       elif (col == "C") and row != max_row:
-        next = f'<a href="../{lowercase}/{row+1}A.html">&gt;&gt;&gt;</a>'
+        next = f'<a href="../{lowercase}/{row+1}A.html"><span class="material-icons">east</span></a>'
       else:
         next = ""
 
       url = f"{lowercase}/{row}{col}.html"
       filepath_thumb = f"360 {lowercase}/360_{lowercase}_{row}{col}.jpg"
       filepath_main = f"2480 {lowercase}/2480_{lowercase}_{row}{col}.jpg"
-      caption = f"""{last} {str(row)}{str(col)} {next} <br />{caption_list[i]}"""
+      caption = f"{caption_list[i]}"
 
       grid.write(f'''      
         <div class="col img-tile">
@@ -149,15 +149,14 @@ while True:
       </nav>
       
       <div id="caption"><p>"""+caption+"""</p></div>
-
-      <div class="d-flex flex-fill"></div>
+        <div id="controls">
+          """+last+next+"""
+          <span id="full-screen" class="material-icons">fullscreen</span>
+          <input type="range" min="0" max="1" value="0" step="0.01", id="slider" label="zoom"/>
+        </div>
         <div id="frame">
           <div id="img-div">
             <img src="../"""+filepath_main+"""\" alt=\""""+caption_list[i]+"""\" id="image"/>
-          </div>
-          <div id="controls">
-            <i id="full-screen" class="material-icons">fullscreen</i>
-            <input type="range" min="0" max="1" value="0" step="0.01", id="slider"/>
           </div>
         </div>
       </div>
