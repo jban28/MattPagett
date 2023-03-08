@@ -12,6 +12,7 @@ td {
 .navbar {
   padding-bottom: 10px;
   flex-grow: 0;
+  background-color: white;
 }
 
 .nav-link{
