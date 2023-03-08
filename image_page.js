@@ -8,7 +8,6 @@ var script = document.createElement('script');
 script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(script);
 
-
 let zoomValue;
 let isMouseDown = false;
 let isTouch = false;
@@ -151,7 +150,7 @@ image.addEventListener('touchstart', (e) => {
   else {
     touchStartX = (e.touches[0].pageX + e.touches[1].pageX) / 2;
     touchStartY = (e.touches[0].pageY + e.touches[1].pageY) / 2;
-    touchSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ^ 2 + (e.touches[0].pageY - e.touches[1].pageY) ^ 2) ^ 0.5; 
+    touchSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ** 2 + (e.touches[0].pageY - e.touches[1].pageY) ** 2) ** 0.5; 
   }
   touchX = touchStartX;
   touchY = touchStartY;
@@ -163,7 +162,6 @@ image.addEventListener('touchmove', (e) => {
   let changeX = 0;
   let changeY = 0;
   let changeSeparation;
-  let zoomTo = zoomValue;
   if (e.touches.length == 1) {
     changeX = e.touches[0].pageX;
     changeY = e.touches[0].pageY;
@@ -171,18 +169,12 @@ image.addEventListener('touchmove', (e) => {
   else {
     changeX = (e.touches[0].pageX + e.touches[1].pageX) / 2;
     changeY = (e.touches[0].pageY + e.touches[1].pageY) / 2;
-    changeSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ^ 2 + (e.touches[0].pageY - e.touches[1].pageY) ^ 2) ^ 0.5; 
-    zoomTo *= changeSeparation/touchSeparation;
-    if (zoomTo > 1) {zoomValue = 1;}
-    else if (zoomTo < slider.min) {zoomValue = slider.min;}
-    else {zoomValue = zoomTo;}
-    image.height = image.naturalHeight * zoomValue;
-    image.width = image.naturalWidth * zoomValue;
-    slider.value = zoomValue;
+    changeSeparation = ((e.touches[0].pageX - e.touches[1].pageX) ** 2 + (e.touches[0].pageY - e.touches[1].pageY) ** 2) ** 0.5; 
+    setZoom(zoomValue * changeSeparation/touchSeparation);
     touchSeparation = changeSeparation;
   }
-  frame.scrollLeft += touchX - changeX;
-  frame.scrollTop += touchY - changeY;
+  frame.scrollLeft += (touchX - changeX);
+  frame.scrollTop += (touchY - changeY);
   touchX = changeX;
   touchY = changeY;
 });
