@@ -120,8 +120,9 @@ while True:
   </head>
   
   <body>
-    <div class="container-fluid" style="height: 100vh; display: flex; flex-flow: column; padding-bottom: 14px;">
+    <div style="height: 100vh; display: flex; flex-flow: column; padding-bottom: 14px;">
       <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
           <a class="navbar-brand" href="index.html">MATT PAGETT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
           data-bs-target="#collapsibleNavbar">
@@ -146,16 +147,19 @@ while True:
               </li>
             </ul>
           </div>
+        </div>
       </nav>
       
-      <div id="caption"><p>"""+caption+"""</p></div>
+      <div class="container-fluid">
+        <p>"""+caption+"""</p>
         <div id="controls">
           """+last+next+"""
           <span id="full-screen" class="material-icons">fullscreen</span>
           <input type="range" min="0" max="1" value="0" step="0.01", id="slider" label="zoom"/>
         </div>
-        <div id="frame">
-          <div id="img-div">
+      </div>
+        <div id="external-frame">
+          <div id="frame">
             <img src="../"""+filepath_main+"""\" alt=\""""+caption_list[i]+"""\" id="image"/>
           </div>
         </div>

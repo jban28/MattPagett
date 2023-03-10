@@ -22,8 +22,9 @@
   </head>
   
   <body>
-    <div class="container-fluid" style="height: 100vh; display: flex; flex-flow: column; padding-bottom: 14px;">
+    <div style="height: 100vh; display: flex; flex-flow: column; padding-bottom: 14px;">
       <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
           <a class="navbar-brand" href="index.html">MATT PAGETT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
           data-bs-target="#collapsibleNavbar">
@@ -48,17 +49,20 @@
               </li>
             </ul>
           </div>
+        </div>
       </nav>
       
-      <div id="caption"><p>Backstreet 3B; charcoal and pastel on 30 sheets of A4 office paper;  105 x 180 cm; 2017
-</p></div>
+      <div class="container-fluid">
+        <p>Backstreet 3B; charcoal and pastel on 30 sheets of A4 office paper;  105 x 180 cm; 2017
+</p>
         <div id="controls">
           <a href="../bodies/13B.html"><span class="material-icons">west</span></a><a href="../bodies/14A.html"><span class="material-icons">east</span></a>
           <span id="full-screen" class="material-icons">fullscreen</span>
           <input type="range" min="0" max="1" value="0" step="0.01", id="slider" label="zoom"/>
         </div>
-        <div id="frame">
-          <div id="img-div">
+      </div>
+        <div id="external-frame">
+          <div id="frame">
             <img src="../2480 bodies/2480_bodies_13C.jpg" alt="Backstreet 3B; charcoal and pastel on 30 sheets of A4 office paper;  105 x 180 cm; 2017
 " id="image"/>
           </div>

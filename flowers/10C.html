@@ -22,8 +22,9 @@
   </head>
   
   <body>
-    <div class="container-fluid" style="height: 100vh; display: flex; flex-flow: column; padding-bottom: 14px;">
+    <div style="height: 100vh; display: flex; flex-flow: column; padding-bottom: 14px;">
       <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
           <a class="navbar-brand" href="index.html">MATT PAGETT</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
           data-bs-target="#collapsibleNavbar">
@@ -48,17 +49,20 @@
               </li>
             </ul>
           </div>
+        </div>
       </nav>
       
-      <div id="caption"><p>KL10: Flower for a Flowerbed, Southwark Park, London (Delphinium); hand-coloured photolithograph; 30 x 42 cm; 2012
-</p></div>
+      <div class="container-fluid">
+        <p>KL10: Flower for a Flowerbed, Southwark Park, London (Delphinium); hand-coloured photolithograph; 30 x 42 cm; 2012
+</p>
         <div id="controls">
           <a href="../flowers/10B.html"><span class="material-icons">west</span></a><a href="../flowers/11A.html"><span class="material-icons">east</span></a>
           <span id="full-screen" class="material-icons">fullscreen</span>
           <input type="range" min="0" max="1" value="0" step="0.01", id="slider" label="zoom"/>
         </div>
-        <div id="frame">
-          <div id="img-div">
+      </div>
+        <div id="external-frame">
+          <div id="frame">
             <img src="../2480 flowers/2480_flowers_10C.jpg" alt="KL10: Flower for a Flowerbed, Southwark Park, London (Delphinium); hand-coloured photolithograph; 30 x 42 cm; 2012
 " id="image"/>
           </div>
