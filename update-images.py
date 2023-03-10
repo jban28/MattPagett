@@ -150,7 +150,7 @@ while True:
         </div>
       </nav>
       
-      <div class="container-fluid">
+      <div class="container-fluid" style="padding-top: 12px;">
         <p>"""+caption+"""</p>
         <div id="controls">
           """+last+next+"""
