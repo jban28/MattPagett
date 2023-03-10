@@ -88,7 +88,7 @@ while True:
       url = f"{lowercase}/{row}{col}.html"
       filepath_thumb = f"360 {lowercase}/360_{lowercase}_{row}{col}.jpg"
       filepath_main = f"2480 {lowercase}/2480_{lowercase}_{row}{col}.jpg"
-      caption = f"{caption_list[i]}"
+      caption = f"{caption_list[i]}"[:-1]
 
       grid.write(f'''      
         <div class="col img-tile">
@@ -160,7 +160,7 @@ while True:
       </div>
         <div id="external-frame">
           <div id="frame">
-            <img src="../"""+filepath_main+"""\" alt=\""""+caption_list[i]+"""\" id="image"/>
+            <img src="../"""+filepath_main+"""\" alt=\""""+caption+"""\" id="image"/>
           </div>
         </div>
       </div>
