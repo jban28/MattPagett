@@ -20,6 +20,14 @@ td {
   
 }
 
+a {
+  color: #cc0000;
+}
+
+a:hover {
+  color: black;
+}
+
 .navbar-brand {
   display: none;
   color: rgb(0, 0, 0);
