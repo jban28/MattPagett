@@ -2,6 +2,9 @@ const image = document.querySelector("#image");
 const frame = document.querySelector('#frame');
 const slider = document.querySelector("#slider");
 const fullScreenBtn = document.querySelector("#full-screen");
+const helpButton = document.querySelector("#help-button");
+const helpWindow = document.querySelector("#help-window");
+const helpClose = document.querySelector("#help-close");
 
 var script = document.createElement('script');
 script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js";
@@ -189,3 +192,15 @@ slider.addEventListener('input', (e) => {
   setZoom(e.target.value)
   slider.blur();
 });
+
+helpButton.addEventListener('click', (e) => {
+  helpWindow.style.display = "block";
+})
+
+helpClose.addEventListener('click', (e) => {
+  helpWindow.style.display = "none";
+})
+
+window.addEventListener('click', (e) => {
+  if (e.target == helpWindow){helpWindow.style.display = "none";}
+})

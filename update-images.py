@@ -155,6 +155,7 @@ while True:
         <div id="controls">
           """+last+next+"""
           <span id="full-screen" class="material-icons">fullscreen</span>
+          <span id="help-button" class="material-icons">help_outline</span>
           <input type="range" min="0" max="1" value="0" step="0.01", id="slider" label="zoom"/>
         </div>
       </div>
@@ -163,6 +164,16 @@ while True:
             <img src="../"""+filepath_main+"""\" alt=\""""+caption+"""\" id="image"/>
           </div>
         </div>
+      </div>
+    </div>
+    
+    <div id="help-window">
+      <div id="help-content">
+        <span id="help-close" class="material-icons">close</span>
+        <p>On mobile/touchscreen, the image can be zoomed using the slider or by pinching the image with two fingers. Tapping on the image will zoom by a fixed amount.</p>
+        <p>On desktop, the image can be zoomed using the mouse wheel or trackpad scroll function. Clicking the image will zoom by a fixed amount. The image can be moved around by clicking and dragging or by using the arrow keys.</p>
+        <p>You can enter fullscreen mode by clicking on the <span id="full-screen" class="material-icons">fullscreen</span> icon</p>
+        <p>You can navigate to the previous image in the set using <span class="material-icons">west</span> and to the next image in the set using <span class="material-icons">east</span>
       </div>
     </div>
 

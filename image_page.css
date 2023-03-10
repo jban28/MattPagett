@@ -21,6 +21,15 @@
 
 p {
   margin: 0px;
+  vertical-align: bottom;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
 }
 
 #controls {
@@ -30,10 +39,12 @@ p {
   padding-bottom: 4px;
   margin: 0px;
   overflow: visible;
+  color: #cc0000;
 }
 
 .material-icons {
-  color: #cc0000;
+  color: inherit;
+  float: bottom;
 }
 
 #slider { 
@@ -109,4 +120,30 @@ p {
 
 ::-ms-tooltip { 
   display: none;
+}
+
+#help-window {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#help-content {
+  margin: 20% auto;
+  max-width: 500px;
+  padding: 12px;
+  background-color: #cc0000;
+  vertical-align: bottom;
+}
+
+#help-close {
+  float: right;
+  color: black;
+  cursor: pointer;
 }
